@@ -1,0 +1,46 @@
+{
+  "name": "otel-fraud-signal-tracer",
+  "version": "1.0.0",
+  "description": "OpenTelemetry demo for fraud-scoring baggage propagation across payment services and trace-to-alert correlation.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "tsx src/server.ts",
+    "build": "tsc --noEmit",
+    "test": "tsx --test tests/**/*.test.ts",
+    "verify": "npm run build && npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mizcausevic-dev/otel-fraud-signal-tracer.git"
+  },
+  "keywords": [
+    "opentelemetry",
+    "fraud",
+    "payments",
+    "baggage",
+    "tracing"
+  ],
+  "author": "Miz Causevic",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mizcausevic-dev/otel-fraud-signal-tracer/issues"
+  },
+  "homepage": "https://github.com/mizcausevic-dev/otel-fraud-signal-tracer#readme",
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/core": "^2.0.1",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.205.0",
+    "@opentelemetry/resources": "^2.0.1",
+    "@opentelemetry/sdk-trace-base": "^2.0.1",
+    "@opentelemetry/sdk-trace-node": "^2.0.1",
+    "@opentelemetry/semantic-conventions": "^1.37.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.8.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}

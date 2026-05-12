@@ -1,0 +1,27 @@
+services:
+  app:
+    build: .
+    ports:
+      - "4378:4378"
+    environment:
+      PORT: 4378
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.126.0
+    profiles: ["observability"]
+    command: ["--config=/etc/otelcol-contrib/config.yaml"]
+    volumes:
+      - ./observability/otel-collector.yaml:/etc/otelcol-contrib/config.yaml:ro
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.65.0
+    profiles: ["observability"]
+    environment:
+      COLLECTOR_OTLP_ENABLED: "true"
+    ports:
+      - "16686:16686"
+      - "4319:4317"
+      - "4320:4318"
