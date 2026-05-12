@@ -1,6 +1,10 @@
 # OTel Fraud Signal Tracer
 
-OpenTelemetry demo for fraud-scoring baggage propagation across payment services and trace-to-alert correlation.
+OpenTelemetry demo for **fraud-scoring baggage propagation** across payment services and trace-to-alert correlation.
+
+> **What this repo proves**
+>
+> Observability becomes much more valuable when risk context survives service boundaries and still makes sense to the operator reading the trace.
 
 ## Why this repo is good
 
