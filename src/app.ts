@@ -1,6 +1,6 @@
 import express from "express";
 import { simulateFraudTrace } from "./fraud-engine.js";
-import { renderDocs, renderOverview, renderTraceBoard } from "./render.js";
+import { renderDocs, renderOverview, renderTraceBoard, renderVerification } from "./render.js";
 import { ensureSeededTraces } from "./seed.js";
 import { dashboardSummary, getTraces } from "./store.js";
 import type { FraudSignalInput } from "./types.js";
@@ -21,6 +21,10 @@ export function createApp() {
 
   app.get("/docs", (_req, res) => {
     res.type("html").send(renderDocs());
+  });
+
+  app.get("/verification", (_req, res) => {
+    res.type("html").send(renderVerification());
   });
 
   app.get("/api/dashboard/summary", (_req, res) => {

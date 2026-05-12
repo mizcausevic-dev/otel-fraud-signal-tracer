@@ -14,7 +14,7 @@ OpenTelemetry demo for fraud-scoring baggage propagation across payment services
 ![Overview](./screenshots/01-overview.png)
 ![Trace board](./screenshots/02-traces.png)
 ![Docs](./screenshots/03-docs.png)
-![API summary](./screenshots/04-api-summary.png)
+![Verification board](./screenshots/04-api-summary.png)
 
 ## What it does
 
@@ -37,6 +37,7 @@ Open:
 - `http://127.0.0.1:4378/`
 - `http://127.0.0.1:4378/traces`
 - `http://127.0.0.1:4378/docs`
+- `http://127.0.0.1:4378/verification`
 
 If the port is busy:
 
