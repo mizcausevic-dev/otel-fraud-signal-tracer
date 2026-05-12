@@ -1,19 +1,20 @@
-﻿# Why We Built This
+# Why We Built This
 
-**otel-fraud-signal-tracer** started from a recurring operating problem in event-driven revenue systems. Teams were collecting more data and more system state, but the decision layer around that data was still fragile under pressure. Teams could collect raw signals, but still struggle to answer the harder questions under pressure: what is actually drifting, who owns the next move, and how much business or control risk is building underneath the technical state.
+**otel-fraud-signal-tracer** grew out of a repeated pattern in observability and fraud-adjacent systems: the risk decision was often made upstream, but the downstream services that had to honor or investigate that decision inherited only fragments of the story. A score might exist. A trace might exist. An alert might exist. What was still missing was durable, service-to-service context that kept the fraud narrative intact as the request moved.
 
-In this case the pressure showed up around dual-write drift, event-order ambiguity, and poor downstream explainability in high-value operational systems. That sounds specific, but the underlying failure mode was familiar. A team would have multiple tools in place, each doing a piece of the job. There might be observability, validation, ticketing, dashboards, static analysis, workflow software, or spreadsheet-based reporting. None of that meant the operating problem was actually solved. What was usually missing was a clear translation layer between system behavior and accountable action.
+That matters because many operational failures in fraud systems are not model failures. They are context failures. A service receives a request, but not the reason it was elevated. An operations team sees an alert, but not the chain of signals that led there. A payment flow is flagged, but the baggage does not survive the system boundary where the next human or service actually needs it. The result is delay, ambiguity, or brittle manual reconstruction.
 
-That was the opening for **otel-fraud-signal-tracer**. The repo was designed around a simple idea: operators need more than visibility. They need evidence, priorities, and next actions that make sense under pressure. That is why the project is framed as event-driven revenue systems rather than as a generic app demo. The point is not just to show that data can be rendered or APIs can be wired together. The point is to show what a practical control surface looks like when the audience is fintech, RevOps, and platform data teams.
+We built **otel-fraud-signal-tracer** to make that propagation problem explicit. The repo treats W3C Baggage, distributed tracing, and operator review as one system instead of three loosely related topics. The point is not only to show that OpenTelemetry can emit spans. The point is to show how risk context can stay attached to work as it moves through a payments environment.
 
-Existing tools missed the mark for understandable reasons. The available tooling landscape - stream processors, BI dashboards, and generic messaging infrastructure - helped with record-keeping, scanning, reporting, or workflow coverage. What it still missed was an operating model for exactly-once behavior, replay confidence, and business-legible event evidence. In other words, the gap was not capability in isolation. The gap was operational coherence. The team responsible for day-to-day decisions still had to reconstruct the story manually.
+Existing observability stacks were good at adjacent jobs. They could show service graphs, latency, and errors. They could even show end-to-end trace flows. What they usually did not do by default was preserve business-critical fraud context in a way that remained useful downstream. The missing piece was not instrumentation volume. It was instrumentation intent.
 
-That shaped the design philosophy from the start:
+That shaped the design philosophy:
 
-- **operator-first** so the most important signal is the one that gets surfaced first
-- **decision-legible** so a security lead, platform operator, product owner, or business stakeholder can understand why a recommendation exists
-- **CI-native** so the checks and narratives can live close to where systems are built, changed, and reviewed
+- **context-first** so the fraud story survives system boundaries
+- **operator-legible** so downstream teams can act without reassembling evidence manually
+- **trace-native** so the design fits modern observability workflows
+- **review-friendly** so the repo can support both engineering and risk conversations
 
-That philosophy also explains what this repo does not try to be. It is not a vague "AI platform," not a one-off research prototype, and not a thin wrapper around a fashionable stack. It is a targeted attempt to model a real operating layer around this problem: OpenTelemetry demo for fraud-scoring baggage propagation across payment services and trace-to-alert correlation.
+This repo also avoids generic observability packaging. It is not trying to be a broad tracing sample with a fraud label attached. It is narrowly focused on the hard part: preserving meaning as requests cross services, tools, and response lanes.
 
-What comes next is practical. The roadmap is about pushing the project deeper into real operational utility: deeper state inspection, replay workflows, and stronger connections between operational events and executive reporting. That direction matters because the long-term value of **otel-fraud-signal-tracer** is not the individual screen or endpoint. It is the operating discipline behind it. The point of the repo is to make that operating layer visible enough to review, improve, and trust.
+Next on the roadmap is richer downstream alert correlation, better baggage inspection surfaces, and stronger connections into broader governance workflows. The long-term value of **otel-fraud-signal-tracer** is that it makes a subtle but important control problem visible enough to design around before incidents force the lesson.
