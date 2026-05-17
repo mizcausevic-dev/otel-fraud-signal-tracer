@@ -31,7 +31,7 @@ OpenTelemetry demo for **fraud-scoring baggage propagation** across payment serv
 ## Local run
 
 ```powershell
-Set-Location "C:\Users\chaus\dev\repos\otel-fraud-signal-tracer"
+cd otel-fraud-signal-tracer
 npm install
 npm run dev
 ```
